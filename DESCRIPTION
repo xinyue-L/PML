@@ -1,0 +1,23 @@
+Package: PML
+Type: Package
+Title: Penalized Multi-band Learning for Accelerometer Data
+Version: 1.0
+Date: 2019-08-16
+Author: c(person(given = "Xinyue", 
+                    family = "Li", 
+                    email = "xinyue.li@yale.edu", 
+                    role = c("aut", "cre")),
+             person(given="Michael", 
+                    family="Kane",
+                    email = "michael.kane@yale.edu",
+                    role = c("aut")))
+Maintainer: Xinyue Li <xinyue.li@yale.edu>
+Description: These functions were developed to support the analysis of circadian rhythm using accelerometer data (physical activity data). Functions for harmonic tests by R.A. Fisher and trelliscope visualization are also included.
+License: GPL (>= 2)
+Imports: trelliscopejs,tidyr,rbokeh,dplyr,
+Encoding: UTF-8
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 6.1.1
+NeedsCompilation: no
+Packaged: 2019-08-16 08:48:47 UTC; xinyueli
