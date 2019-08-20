@@ -62,5 +62,7 @@ Then no warnings pop up anymore and Status: OK.
 
 Therefore I submitted compressed pdf only, with 163Kb. (It was not achieved through tools::compactPDF(gs_quality = "ebook") because it did not work at all. I installed qpdf and tried --compact-vignettes but it did not work. The file is not compressed and no error messages pop up. Therefore I used alternative methods to generate compressed pdf files and build the package without the need to rebuild vignettes.)
 
+3. I am submitting this R package under the request of the journal reviewer. After the journal gets published, I will be able to update the information on the reference, giving the exact location as to where it can be accessed.
+
 ## First Submission
 This is my first submission and thank you very much for your help!
