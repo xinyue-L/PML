@@ -12,8 +12,8 @@
 #' @param plot whether to plot: MSE against the number of nonzero \eqn{\theta}'s, and only the points at which the number of nonzero \eqn{\theta}'s changes (as \eqn{\lambda} changes) are be plotted. The default is TRUE.
 #' @param cross whether to perform cross-validation. The default is FALSE.
 #' @param Ncross the number of groups of data for cross-validation. If cross=TRUE, the data shall be divided into Ncross groups.
-#' @keywords penalized multi-band learning, L-1/L-2 penalty, harmonics, periodicity, circadian rhythm
-#'
+#' @keywords learning, penalty, harmonics, periodicity
+#' 
 #' @return if no cross-validation is conducted, return a list; if cross-validation, return a list of lists, with the last list consisting of all FFT results and cross-validation groups (showing the subject IDs leave-out /NOT used each time).
 #' @return \item{topfreq}{vector of length \code{Ntop}: top frequencies selected.}
 #' @return \item{mse}{vector of length \code{Nlambda}: mean squared error for each lambda (penalty). If no cross-validation, mse is calculated based on all available data; if cross-validation, mse is calculated based on the rest observations.}
@@ -30,6 +30,8 @@
 #' re <- bandSelect(df=pa3,Nlength=1440*3,Nlambda=100,alpha=1,Ntop=5,cross=FALSE,Ncross=NULL,plot=TRUE)
 #'
 #' @seealso \code{\link{form}}
+#' 
+#' @references Li, X. , Kane, M. , Zhang, Y. , Sun, W. , Song, Y. , Dong, S. , Lin, Q. , Zhu, Q. , Jiang, F. & Zhao, H. (2019). Penalized Selection of Periodicities Characterizes the Consolidation of Sleep-Wake Circadian Rhythms During Early Childhood Development. Submitted.
 #'
 #' @export
 #'
@@ -49,8 +51,8 @@ bandSelect <- function(df,Nlength,Nlambda=100,alpha=1,Ntop=5,cross=FALSE,Ncross=
   }
   xscore <- do.call("rbind",lapply(re,function(x) x[,2]))
   xprop <- do.call("rbind",lapply(re,function(x) x[,4]))
-  print(paste("With a threshold of ",Nlength," observations per individual, ",nrow(xscore),
-              " individuals are used for penalized multi-band learning.",sep=""))
+  print(paste("With a threshold of ",Nlength," observations per individual, "))
+  print(paste(nrow(xscore)," individuals are used for penalized multi-band learning.",sep=""))
 
   calc <- function(x_sq,alph,lambda) max((2*x_sq-alph*lambda)/(2*x_sq+(1-alph)*lambda),0)
   calc <- Vectorize(calc,vectorize.args ="x_sq")

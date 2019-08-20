@@ -38,7 +38,8 @@ re2 <- test.harmonic(ob2,p=0.05/(length(ob2)-1)/2)
 re2$sig;head(re2$fft) ## 3 significant harmonics
 
 #### test on the population average
-re0 <- bandSelect(df=pa3,Nlength=1440*3,Nlambda=100,alpha=1,Ntop=3,cross=FALSE,Ncross=NULL,plot=TRUE)
+re0 <- bandSelect(df=pa3,Nlength=1440*3,Nlambda=100,alpha=1,
+                  Ntop=3,cross=FALSE,Ncross=NULL,plot=TRUE)
 freq <- data.frame(Frequency=re0$freq,Proportion=colMeans(re0$xprop))
 re3 <- test.harmonic(freq,p=0.05/nrow(freq),fft=TRUE)
 print(re3$sig,digits=3,row.names=FALSE)

@@ -66,6 +66,7 @@ tre <- function(lis,id=NULL,varlis=NULL,smband=1/12,maxday=14,plot.ind=TRUE,plot
   }
 
   #### ID_Nday info
+  ID_Nday <- activity <- activity_ind <- activity_max <- activity_all <- NULL #required to avoid NOTE in CMD check
   act <- data.frame(ID=as.numeric(unlist(ID)),
                     ID_Nday=unlist(lapply(ID,function(x) seq(1,length(x)))))
   act <- dplyr::tbl_df(act)

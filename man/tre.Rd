@@ -42,7 +42,8 @@ data(var3)
 #### individual mean activity plot: return a dataset with trelliscope panels
 tre.ind <- tre(lis3,varlis=var3)
 tre.ind$activity_ind <- tre.ind$activity_all <- NULL
-trelliscopejs::trelliscope(tre.ind,name = "Individual Mean Activity Plot", nrow = 2, ncol = 2,path=getwd())
+trelliscopejs::trelliscope(tre.ind,name = "Individual Mean Activity Plot",
+                           nrow = 2, ncol = 2,path=getwd())
 
 #### day activity plot: directly generating trelliscope visualization
 tre(lis3,plot.ind=FALSE,plot.ori=FALSE,plot.tre=TRUE)

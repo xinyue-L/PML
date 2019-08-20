@@ -5,7 +5,7 @@
 \description{
   'var3' is a data frame consisting of ID, gender, and age information for the 3 individuals in datasets 'lis3' and 'pa3'. 'var3' is used as an input to generate trelliscope panels for visualization so that one can filter based on age and gender.
 }
-\usage{var3}
+\usage{data(var3)}
 \format{a data frame consisting of three variables: ID, gender and age}
 
 \keyword{datasets}

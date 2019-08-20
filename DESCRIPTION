@@ -1,9 +1,9 @@
 Package: PML
 Type: Package
-Title: Penalized Multi-band Learning for Accelerometer Data
+Title: Penalized Multi-Band Learning for Circadian Rhythm Analysis Using Actigraphy
 Version: 1.0
 Date: 2019-08-16
-Author: c(person(given = "Xinyue", 
+Authors@R: c(person(given = "Xinyue", 
                     family = "Li", 
                     email = "xinyue.li@yale.edu", 
                     role = c("aut", "cre")),
@@ -12,12 +12,15 @@ Author: c(person(given = "Xinyue",
                     email = "michael.kane@yale.edu",
                     role = c("aut")))
 Maintainer: Xinyue Li <xinyue.li@yale.edu>
-Description: These functions were developed to support the analysis of circadian rhythm using accelerometer data (physical activity data). Functions for harmonic tests by R.A. Fisher and trelliscope visualization are also included.
+Description: Penalized Multi-Band Learning algorithm can be effectively implemented for circadian rhythm analysis and daily activity pattern characterization using actigraphy (continuously measured objective physical activity data). Functions for interactive visualization of actigraph data are also included.
+Depends: R (>= 3.4.0)
 License: GPL (>= 2)
 Imports: trelliscopejs,tidyr,rbokeh,dplyr,
 Encoding: UTF-8
 Suggests: knitr, rmarkdown
 VignetteBuilder: knitr
 RoxygenNote: 6.1.1
+URL: https://github.com/xinyue-L/PML
+BugReports: https://github.com/xinyue-L/PML/issues
 NeedsCompilation: no
 Packaged: 2019-08-16 08:48:47 UTC; xinyueli

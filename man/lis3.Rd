@@ -9,7 +9,7 @@
   measured every one minute, so the matrix is 1440 by 'nday'. 
   'lis3' is also a named list, the name of which is the individual ID.
 }
-\usage{lis3}
+\usage{data(lis3)}
 \format{A data list of activity data for 3 individuals; each inidivdual data set is a 1440 by nday matrix.}
 
 \keyword{datasets}

@@ -47,6 +47,7 @@ form <- function(lis,maxday=14,id=NULL) {
   }
   
   #### ID_Nday info
+  ID_Nday <- NULL #required to avoid NOTE in CMD check
   act <- data.frame(ID=as.numeric(unlist(ID)),
                       ID_Nday=unlist(lapply(ID,function(x) seq(1,length(x)))))
   act <- dplyr::tbl_df(act)
