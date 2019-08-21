@@ -36,18 +36,12 @@ In devtools::check_win_release(), 4 NOTES pop up:
 However, they are not mis-spelled, so I leave it as it is.
 
 2. & 3. two examples with CPU or elapsed time > 10s
-** running examples for arch 'i386' ... [20s] NOTE
-    user system elapsed
-tre 9.39   0.47   10.46
-** running examples for arch 'x64' ... [23s] NOTE
-     user system elapsed
-tre 10.83    0.5   12.42
 
-Generating trelliscope panel displays (function 'tre') is indeed time-consuming, so I can only leave it as it is.
+I revised the examples and then the notes no longer pop up.
 
 4. Non-standard file/directory found at top level: 'KEYWORDS'
 
-I removed it already. 
+I removed it from the folder. 
 
 ## Small Notes
 1. Sometimes it checks for vignettes in 'inst/doc' ... WARNING
@@ -60,7 +54,7 @@ Then no warnings pop up anymore and Status: OK.
   'gs+qpdf' made some significant size reductions:
      compacted 'PML.pdf' from 700Kb to 188Kb
 
-Therefore I submitted compressed pdf only, with 163Kb. (It was not achieved through tools::compactPDF(gs_quality = "ebook") because it did not work at all. I installed qpdf and tried --compact-vignettes but it did not work. The file is not compressed and no error messages pop up. Therefore I used alternative methods to generate compressed pdf files and build the package without the need to rebuild vignettes.)
+Therefore I submitted compressed pdf only, with 200Kb. (It was not achieved through tools::compactPDF(gs_quality = "ebook") because it did not work at all. I installed qpdf and tried --compact-vignettes but it did not work. The file is not compressed and no error messages pop up. Therefore I used alternative methods to generate compressed pdf files and build the package without the need to rebuild vignettes.)
 
 3. I am submitting this R package under the request of the journal reviewer. After the journal gets published, I will be able to update the information on the reference, giving the exact location as to where it can be accessed.
 
