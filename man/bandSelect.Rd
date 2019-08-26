@@ -52,18 +52,13 @@ and L-1/L-2 penalties to select significant harmonics/periodicities and describe
 }
 \examples{
 data(pa3)
-re <- bandSelect(df=pa3,Nlength=1440*3,Nlambda=100,alpha=1,Ntop=5,cross=FALSE,Ncross=NULL,plot=TRUE)
+re <- bandSelect(df=pa3,Nlength=1440*3,Nlambda=100,alpha=1,Ntop=5,
+                 cross=FALSE,Ncross=NULL,plot=TRUE)
 
+}
+\references{
+Li, X. , Kane, M. , Zhang, Y. , Sun, W. , Song, Y. , Dong, S. , Lin, Q. , Zhu, Q. , Jiang, F. & Zhao, H. (2019). Penalized Selection of Periodicities Characterizes the Consolidation of Sleep-Wake Circadian Rhythms During Early Childhood Development. Submitted.
 }
 \seealso{
 \code{\link{form}}
 }
-\keyword{L-1/L-2}
-\keyword{circadian}
-\keyword{harmonics,}
-\keyword{learning,}
-\keyword{multi-band}
-\keyword{penalized}
-\keyword{penalty,}
-\keyword{periodicity,}
-\keyword{rhythm}

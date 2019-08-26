@@ -2,10 +2,10 @@
 title: "Introduction to Package PML in Circadian Analysis Using Actigraphy"
 author: "Xinyue Li"
 date: "`r Sys.Date()`"
-output: pdf_document
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Package PML User Manual}
-  %\VignetteEngine{knitr::knitr}
+  %\VignetteEngine{knitr::rmarkdown}
   \usepackage[utf8]{inputenc}
 ---
 
@@ -18,7 +18,7 @@ This vignette gives examples on how to apply penalized multi-band learning to ac
 We use a synthetic dataset to implement the method. 'lis3' is a data list consisting of three matrices, each giving activity data for one individual. Each column of the matrix is one-day observation, and here the physical activity (PA) is measured every one minute, so the matrix is 1440 by 'nday'. 'lis3' is also a named list, the name of which is the individual ID.
 
 To convert the data to the required format as the input of the function for penalized multi-band learning, we use function 'form':
-```{r,warning=F}
+```{r,warning=FALSE}
 suppressMessages(library(PML))
 data(lis3)
 pa3 <- form(lis3)
@@ -90,7 +90,7 @@ Here we can use the function `tre` to generate trelliscope panels based on activ
 
 ```{r,eval=FALSE}
 #### directly display trelliscope panels, no dataset is returned
-tre(lis3,plot.ind=TRUE,plot.tre=TRUE)
+tre(lis3,plot.ind=TRUE,plot.tre=TRUE,plot.tre.path = tempdir())
 ```
 ```{r,echo=FALSE,out.width = "100%"}
 knitr::include_graphics("ind_plot.png")
@@ -100,15 +100,14 @@ The variables that can be used to filter plots include ID, mean activity counts,
 
 We can always incorporate more variables for filtering, labelling, and sorting, using the `varlis` argument. The covariate dataset needs to have the first column as "ID", so that it can be merged to the activity data.
 
-```{r}
+```{r,eval=FALSE}
 #### return a dataset with trelliscope panels
 data(var3)
 tre.ind <- suppressWarnings(tre(lis3,plot.ind=TRUE,varlis=var3)) 
-```
-```{r,eval=FALSE}
+
 ## prepare for visualization; no lists are allowed
 tre.ind$activity_ind <- tre.ind$activity_all <- NULL 
-trelliscopejs::trelliscope(tre.ind,name = "Day Activity Plot", nrow = 2, ncol = 2,path=getwd())
+trelliscopejs::trelliscope(tre.ind,name = "Day Activity Plot", nrow = 2, ncol = 2,path=tempdir())
 ```
 ```{r,echo=FALSE,out.width = "100%"}
 knitr::include_graphics("ind_plot_filter.png")
@@ -119,7 +118,7 @@ If we merge covariates with the activity data using `varlis=var3`, in the trelli
 On the other hand, if we are interested in daily activity plots in addition to individual mean activity plots, we can set `plot.ind=FALSE`.
 
 ```{r,eval=FALSE}
-tre(lis3,varlis=var3,plot.ind=FALSE,plot.tre=TRUE)
+tre(lis3,varlis=var3,plot.ind=FALSE,plot.tre=TRUE,plot.tre.path = tempdir())
 ```
 ```{r,echo=FALSE,out.width = "100%"}
 knitr::include_graphics("day_plot.png")

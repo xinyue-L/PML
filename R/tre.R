@@ -27,16 +27,19 @@
 #' @return The data frame including activity, filtering stats, optional covariates, and trelliscope panels. (No data frame will be returned if plot.tre is TRUE.)
 
 #' @examples
+#' \dontrun{
 #' data(lis3)
 #' data(var3)
 #'
 #' #### individual mean activity plot: return a dataset with trelliscope panels
 #' tre.ind <- tre(lis3,varlis=var3)
 #' tre.ind$activity_ind <- tre.ind$activity_all <- NULL
-#' trelliscopejs::trelliscope(tre.ind,name = "Individual Mean Activity Plot", nrow = 2, ncol = 2,path=getwd())
-#'
+#' trelliscopejs::trelliscope(tre.ind,name = "Individual Mean Activity Plot", 
+#' nrow = 2, ncol = 2,path=tempdir())
+#' 
 #' #### day activity plot: directly generating trelliscope visualization
-#' tre(lis3,plot.ind=FALSE,plot.ori=FALSE,plot.tre=TRUE)
+#' tre(lis3,plot.ind=FALSE,plot.ori=FALSE,plot.tre=TRUE,plot.tre.path=tempdir())
+#' } 
 #'
 #' @seealso \code{\link{form}}
 #'
@@ -113,17 +116,17 @@ tre <- function(lis,id=NULL,varlis=NULL,smband=1/12,maxday=14,plot.ind=TRUE,plot
     ### merge with other datasets
     if(!is.null(varlis)) {
       deltadf <- data.frame(ID=unique(act$ID))
-      deltadf <- merge(deltadf,varlis,by="ID",all.x=T)
+      deltadf <- merge(deltadf,varlis,by="ID",all.x=TRUE)
       act <- cbind(act,deltadf[,-1]);rm(deltadf)
     }
 
     ### generate plot: ind vs global
     ptm <- Sys.time()
-    print("Generating trelliscope individual plots... It may take some time.")
+    message("Generating trelliscope individual plots... It may take some time.")
     ind <- act[!duplicated(act$ID),]
     ind <- dplyr::mutate(act,panel = trelliscopejs::pmap_plot(list(ind$ID,ind$activity_ind,
                                                                    ind$activity_all,smband,plot.ori,plot.sm), ind_plot))
-    print(paste("Total time: ",round(difftime(Sys.time(),ptm,units="mins")[[1]],2)," mins",sep=""))
+    message(paste("Total time: ",round(difftime(Sys.time(),ptm,units="mins")[[1]],2)," mins",sep=""))
 
     ## trelliscope plot
     if(plot.tre==TRUE) {
@@ -143,7 +146,7 @@ tre <- function(lis,id=NULL,varlis=NULL,smband=1/12,maxday=14,plot.ind=TRUE,plot
     ## merge with other datasets
     if(!is.null(varlis)) {
       deltadf <- data.frame(ID=unique(act$ID))
-      deltadf <- merge(deltadf,varlis,by="ID",all.x=T)
+      deltadf <- merge(deltadf,varlis,by="ID",all.x=TRUE)
       deltadf2 <- apply(deltadf,2,function(y) ind_to_day(x=y,df=act))
       act <- cbind(act,deltadf2[,-1]);rm(deltadf,deltadf2)
     }
@@ -153,10 +156,10 @@ tre <- function(lis,id=NULL,varlis=NULL,smband=1/12,maxday=14,plot.ind=TRUE,plot
 
     ## generate plot: day observation
     ptm <- Sys.time()
-    print("Generating trelliscope activity day plots... It may take some time.")
+    message("Generating trelliscope activity day plots... It may take some time.")
     act <- dplyr::mutate(act,panel = trelliscopejs::pmap_plot(list(id=ID,id_Nday=ID_Nday,act_ori=activity,act_ind=activity_ind,
                                     act_all=activity_all,act_max=activity_max,band=smband,ori=plot.ori,lw=plot.sm), act_plot))
-    print(paste("Total time: ",round(difftime(Sys.time(),ptm,units="mins")[[1]],2)," mins",sep=""))
+    message(paste("Total time: ",round(difftime(Sys.time(),ptm,units="mins")[[1]],3)," mins",sep=""))
     #check memory: format(object.size(act),units="Mb",standard="legacy")
 
     ## trelliscope plot

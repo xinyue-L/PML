@@ -36,17 +36,19 @@ The data frame including activity, filtering stats, optional covariates, and tre
 This function generates the data frame necessary for trelliscope visualization.
 }
 \examples{
+\dontrun{
 data(lis3)
 data(var3)
 
 #### individual mean activity plot: return a dataset with trelliscope panels
 tre.ind <- tre(lis3,varlis=var3)
 tre.ind$activity_ind <- tre.ind$activity_all <- NULL
-trelliscopejs::trelliscope(tre.ind,name = "Individual Mean Activity Plot",
-                           nrow = 2, ncol = 2,path=getwd())
+trelliscopejs::trelliscope(tre.ind,name = "Individual Mean Activity Plot", 
+                           nrow = 2, ncol = 2,path=tempdir())
 
 #### day activity plot: directly generating trelliscope visualization
-tre(lis3,plot.ind=FALSE,plot.ori=FALSE,plot.tre=TRUE)
+tre(lis3,plot.ind=FALSE,plot.ori=FALSE,plot.tre=TRUE,plot.tre.path=tempdir())
+} 
 
 }
 \seealso{

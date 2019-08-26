@@ -15,7 +15,7 @@
 #' @return individual to day observations.
 
 #### activity plot
-act_plot <- function(id,id_Nday,act_ori,act_ind,act_all,act_max,band,ori=F,lw=T) {
+act_plot <- function(id,id_Nday,act_ori,act_ind,act_all,act_max,band,ori=FALSE,lw=TRUE) {
   timeOfDay <- function(num) {
     hour <- floor(num/60)
     min <- num - 60*hour
@@ -36,7 +36,7 @@ act_plot <- function(id,id_Nday,act_ori,act_ind,act_all,act_max,band,ori=F,lw=T)
   #vec <- act_ori
   title_name <- paste("ID = ",id," #Day = ",id_Nday,sep="")
 
-  if(lw==T & ori==F) {
+  if(lw==TRUE & ori==FALSE) {
     rbokeh::figure(title=title_name,legend_location = "top_left",
                    width=600, height=300,
                    #xlab="Time of the Day", ylab="Activity Count",
@@ -44,9 +44,9 @@ act_plot <- function(id,id_Nday,act_ori,act_ind,act_all,act_max,band,ori=F,lw=T)
                    tools=c("pan","wheel_zoom","box_zoom","resize",
                            "box_select","reset","save","help")) %>%
       #ly_points(xseq, act_ori, color="black", size=1, hover= "Time @xtime", alpha=0.5) %>%
-      ly_lines(xseq,act_ori,color="black",alpha=0.2,legend=F) %>%
+      ly_lines(xseq,act_ori,color="black",alpha=0.2,legend=FALSE) %>%
       ly_points(xseq,vec,color="white",size=2,alpha=0,
-                hover=data.frame(Time=xtime,Activity=floor(vec)),legend=F) %>%
+                hover=data.frame(Time=xtime,Activity=floor(vec)),legend=FALSE) %>%
       ly_lines(xseq,vec,color="black",width=2,legend="activity lowess") %>%
       ly_lines(xseq,vec_ind,width=2,color="blue",legend="individual mean lowess") %>%
       ly_lines(xseq,vec_all,color="red",width=2,legend="global mean lowess") %>%
@@ -57,7 +57,7 @@ act_plot <- function(id,id_Nday,act_ori,act_ind,act_all,act_max,band,ori=F,lw=T)
                  axis_label_text_font_size = "12pt", axis_label_text_font_style = "normal") %>%
       theme_title(text_font_size="12pt",text_font="Helvetica") %>%
       theme_legend(label_text_font_size = "8pt")
-  } else if (lw==T & ori==T) {
+  } else if (lw==TRUE & ori==TRUE) {
     rbokeh::figure(title=title_name,legend_location = "top_left",
                    width=600, height=300,
                    #xlab="Time of the Day", ylab="Activity Count",
@@ -65,9 +65,9 @@ act_plot <- function(id,id_Nday,act_ori,act_ind,act_all,act_max,band,ori=F,lw=T)
                    tools=c("pan","wheel_zoom","box_zoom","resize",
                            "box_select","reset","save","help")) %>%
       #ly_points(xseq, act_ori, color="black", size=1, hover= "Time @xtime", alpha=0.5) %>%
-      ly_lines(xseq,act_ori,color="black",alpha=0.2,legend=F) %>%
+      ly_lines(xseq,act_ori,color="black",alpha=0.2,legend=FALSE) %>%
       ly_points(xseq,vec,color="white",size=2,alpha=0,
-                hover=data.frame(Time=xtime,Activity=floor(vec)),legend=F) %>%
+                hover=data.frame(Time=xtime,Activity=floor(vec)),legend=FALSE) %>%
       ly_lines(xseq,act_ind,width=2,color="blue",alpha=0.2,legend="individual mean") %>%
       ly_lines(xseq,act_all,color="red",alpha=0.2,width=2,legend="global mean") %>%
       ly_lines(xseq,vec,color="black",width=2,legend="activity lowess") %>%
@@ -80,7 +80,7 @@ act_plot <- function(id,id_Nday,act_ori,act_ind,act_all,act_max,band,ori=F,lw=T)
                  axis_label_text_font_size = "12pt", axis_label_text_font_style = "normal") %>%
       theme_title(text_font_size="12pt",text_font="Helvetica") %>%
       theme_legend(label_text_font_size = "8pt")
-  } else if(lw==F & ori==T) {
+  } else if(lw==FALSE & ori==TRUE) {
     rbokeh::figure(title=title_name,legend_location = "top_left",
                    width=600, height=300,
                    #xlab="Time of the Day", ylab="Activity Count",
@@ -88,9 +88,9 @@ act_plot <- function(id,id_Nday,act_ori,act_ind,act_all,act_max,band,ori=F,lw=T)
                    tools=c("pan","wheel_zoom","box_zoom","resize",
                            "box_select","reset","save","help")) %>%
       #ly_points(xseq, act_ori,color ="black", size=1, hover= "Time @xtime", alpha=0.5) %>%
-      ly_lines(xseq,act_ori,color="black",alpha=0.2,legend=F) %>%
+      ly_lines(xseq,act_ori,color="black",alpha=0.2,legend=FALSE) %>%
       ly_points(xseq,vec,color="white",size=2,alpha=0,
-                hover=data.frame(Time=xtime,Activity=floor(vec)),legend=F) %>%
+                hover=data.frame(Time=xtime,Activity=floor(vec)),legend=FALSE) %>%
       ly_lines(xseq,act_ind,width=2,color="blue",alpha=0.2,legend="individual mean") %>%
       ly_lines(xseq,act_all,color="red",alpha=0.2,width=2,legend="global mean") %>%
       x_axis(label="Time of the Day",

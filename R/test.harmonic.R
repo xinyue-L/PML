@@ -25,7 +25,8 @@
 #' re2$sig;head(re2$fft) ## 3 significant harmonics
 #'
 #' #### test on the population average
-#' re0 <- bandSelect(df=pa3,Nlength=1440*3,Nlambda=100,alpha=1,Ntop=3,cross=FALSE,Ncross=NULL,plot=TRUE)
+#' re0 <- bandSelect(df=pa3,Nlength=1440*3,Nlambda=100,alpha=1,Ntop=3,
+#' cross=FALSE,Ncross=NULL,plot=TRUE)
 #' freq <- data.frame(Frequency=re0$freq,Proportion=colMeans(re0$xprop))
 #' re3 <- test.harmonic(freq,p=0.05/nrow(freq),fft=TRUE)
 #' print(re3$sig,digits=3,row.names=FALSE)
@@ -38,7 +39,7 @@
 
 test.harmonic <- function(ob,p,fft=FALSE,maxfreq=10) {
   if(fft==TRUE) {
-    fre <- ob[order(ob[,2],decreasing=T),]
+    fre <- ob[order(ob[,2],decreasing=TRUE),]
   } else {
     f <- fft(ob)
     fre <- fft.harmonic(f)
@@ -57,7 +58,7 @@ test.harmonic <- function(ob,p,fft=FALSE,maxfreq=10) {
         re <- rbind(re,re[1,])
         re[i,] <- c(fre[i,c(1,2)],p2)
         if(i>maxfreq) {
-          print(paste("P-value selected too large and too many frequencies significant ( > ,", maxfreq, ",max freq reached), consider Bonferonni correction?",sep=""))
+          message(paste("P-value selected too large and too many frequencies significant ( > ,", maxfreq, ",max freq reached), consider Bonferonni correction?",sep=""))
           break
         }
       }

@@ -49,19 +49,19 @@ gharmonic <- function(n,r,p,tol=10^-7,init=NULL) {
   if(is.null(init)) {
     first <- seq(0.1,0.9,by=0.1)
     firstre <- calc(nn=n,rr=r,g=first)
-    if(!any(firstre>p & firstre<1,na.rm = T)) {
+    if(!any(firstre>p & firstre<1,na.rm = TRUE)) {
       first <- seq(0.01,0.1,by=0.01)
       firstre <- calc(nn=n,rr=r,g=first)
-      if(!any(firstre>p & firstre<1,na.rm = T)) {
+      if(!any(firstre>p & firstre<1,na.rm = TRUE)) {
         first <- seq(0.001,0.01,by=0.001)
         firstre <- calc(nn=n,rr=r,g=first)
-        if(!any(firstre>p & firstre<1,na.rm = T)) {
+        if(!any(firstre>p & firstre<1,na.rm = TRUE)) {
           first <- seq(0.0001,0.001,by=0.0001)
           firstre <- calc(nn=n,rr=r,g=first)
-          if(!any(firstre>p & firstre<1,na.rm = T)) {
+          if(!any(firstre>p & firstre<1,na.rm = TRUE)) {
             first <- seq(0.00001,0.0001,by=0.00001)
             firstre <- calc(nn=n,rr=r,g=first)
-            if(!any(firstre>p & firstre<1,na.rm = T)) {
+            if(!any(firstre>p & firstre<1,na.rm = TRUE)) {
               stop("check calculation: specified range (0.00001-0.9) does not cover g")
             }
           }

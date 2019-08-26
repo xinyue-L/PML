@@ -1,4 +1,4 @@
-## ----warning=F-----------------------------------------------------------
+## ----warning=FALSE-------------------------------------------------------
 suppressMessages(library(PML))
 data(lis3)
 pa3 <- form(lis3)
@@ -35,26 +35,25 @@ print(re3$sig,digits=3,row.names=FALSE)
 
 ## ----eval=FALSE----------------------------------------------------------
 #  #### directly display trelliscope panels, no dataset is returned
-#  tre(lis3,plot.ind=TRUE,plot.tre=TRUE)
+#  tre(lis3,plot.ind=TRUE,plot.tre=TRUE,plot.tre.path = tempdir())
 
 ## ----echo=FALSE,out.width = "100%"---------------------------------------
 knitr::include_graphics("ind_plot.png")
 
-## ------------------------------------------------------------------------
-#### return a dataset with trelliscope panels
-data(var3)
-tre.ind <- suppressWarnings(tre(lis3,plot.ind=TRUE,varlis=var3)) 
-
 ## ----eval=FALSE----------------------------------------------------------
+#  #### return a dataset with trelliscope panels
+#  data(var3)
+#  tre.ind <- suppressWarnings(tre(lis3,plot.ind=TRUE,varlis=var3))
+#  
 #  ## prepare for visualization; no lists are allowed
 #  tre.ind$activity_ind <- tre.ind$activity_all <- NULL
-#  trelliscopejs::trelliscope(tre.ind,name = "Day Activity Plot", nrow = 2, ncol = 2,path=getwd())
+#  trelliscopejs::trelliscope(tre.ind,name = "Day Activity Plot", nrow = 2, ncol = 2,path=tempdir())
 
 ## ----echo=FALSE,out.width = "100%"---------------------------------------
 knitr::include_graphics("ind_plot_filter.png")
 
 ## ----eval=FALSE----------------------------------------------------------
-#  tre(lis3,varlis=var3,plot.ind=FALSE,plot.tre=TRUE)
+#  tre(lis3,varlis=var3,plot.ind=FALSE,plot.tre=TRUE,plot.tre.path = tempdir())
 
 ## ----echo=FALSE,out.width = "100%"---------------------------------------
 knitr::include_graphics("day_plot.png")

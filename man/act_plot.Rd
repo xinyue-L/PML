@@ -4,8 +4,8 @@
 \alias{act_plot}
 \title{trelliscope auxillary function}
 \usage{
-act_plot(id, id_Nday, act_ori, act_ind, act_all, act_max, band, ori = F,
-  lw = T)
+act_plot(id, id_Nday, act_ori, act_ind, act_all, act_max, band,
+  ori = FALSE, lw = TRUE)
 }
 \arguments{
 \item{id}{individual ID.}

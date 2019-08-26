@@ -12,7 +12,7 @@
 #' @return individual to day observations.
 
 #### individual plot
-ind_plot <- function(id,act_ind,act_all,band,ori=T,lw=F) {
+ind_plot <- function(id,act_ind,act_all,band,ori=TRUE,lw=FALSE) {
   timeOfDay <- function(num) {
     hour <- floor(num/60)
     min <- num - 60*hour
@@ -34,7 +34,7 @@ ind_plot <- function(id,act_ind,act_all,band,ori=T,lw=F) {
   df <- data.frame(Time=xtime,Individual_Mean=act_ind,Population_Mean=act_all,Delta=delta)
   title_name <- paste("ID = ",id, sep="")
 
-  if(lw==F & ori==T) {
+  if(lw==FALSE & ori==TRUE) {
     rbokeh::figure(title=title_name,legend_location = "top_left",
                    width=600, height=300,
                    #xlab="Time of the Day", ylab="Activity Count",
@@ -44,7 +44,7 @@ ind_plot <- function(id,act_ind,act_all,band,ori=T,lw=F) {
 
       ly_lines(xseq,vec_ind,width=1,color="blue",alpha=0.2,legend="ind mean") %>%
       ly_points(xseq,vec_ind_s,color="white",size=2,alpha=0,
-                hover=df,legend=F) %>%
+                hover=df,legend=FALSE) %>%
       ly_lines(xseq,act_all,color="red",width=2,legend="global mean") %>%
       x_axis(label="Time of the Day",
              desired_num_ticks = 10, num_minor_ticks= 2) %>%
@@ -53,7 +53,7 @@ ind_plot <- function(id,act_ind,act_all,band,ori=T,lw=F) {
                  axis_label_text_font_size = "12pt", axis_label_text_font_style = "normal") %>%
       theme_title(text_font_size="12pt",text_font="Helvetica") %>%
       theme_legend(label_text_font_size = "8pt")
-  } else if(lw==T & ori==T) {
+  } else if(lw==TRUE & ori==TRUE) {
     rbokeh::figure(title=title_name,legend_location = "top_left",
                    width=600, height=300,
                    #xlab="Time of the Day", ylab="Activity Count",
@@ -63,7 +63,7 @@ ind_plot <- function(id,act_ind,act_all,band,ori=T,lw=F) {
 
       ly_lines(xseq,vec_ind,width=1,color="blue",alpha=0.2,legend="ind mean") %>%
       ly_points(xseq,vec_ind_s,color="white",size=2,alpha=0,
-                hover=df,legend=F) %>%
+                hover=df,legend=FALSE) %>%
       ly_lines(xseq,vec_ind_s,width=2,color="blue",legend="ind mean lowess") %>%
       ly_lines(xseq,act_all,color="red",width=2,legend="global mean") %>%
       ly_lines(xseq,vec_all_s,color="yellow",width=2,legend="global mean lowess") %>%
@@ -74,7 +74,7 @@ ind_plot <- function(id,act_ind,act_all,band,ori=T,lw=F) {
                  axis_label_text_font_size = "12pt", axis_label_text_font_style = "normal") %>%
       theme_title(text_font_size="12pt",text_font="Helvetica") %>%
       theme_legend(label_text_font_size = "8pt")
-  } else if(lw==T & ori==F) {
+  } else if(lw==TRUE & ori==FALSE) {
     rbokeh::figure(title=title_name,legend_location = "top_left",
                    width=600, height=300,
                    #xlab="Time of the Day", ylab="Activity Count",
@@ -84,7 +84,7 @@ ind_plot <- function(id,act_ind,act_all,band,ori=T,lw=F) {
 
       ly_lines(xseq,vec_ind,width=1,color="blue",alpha=0.2,legend="ind mean") %>%
       ly_points(xseq,vec_ind_s,color="white",size=2,alpha=0,
-                hover=df,legend=F) %>%
+                hover=df,legend=FALSE) %>%
       ly_lines(xseq,vec_ind_s,width=2,color="blue",legend="ind mean lowess") %>%
       ly_lines(xseq,vec_all_s,color="yellow",width=2,legend="global mean lowess") %>%
       x_axis(label="Time of the Day",

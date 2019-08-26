@@ -13,7 +13,7 @@
 The DESCRIPTION file:
 \packageDESCRIPTION{PML}
 \packageIndices{PML}
-These functions were developed to support the analysis of circadian rhythm using accelerometer data (physical activity data). Functions for harmonic tests by R.A. Fisher and trelliscope visualization are also included.
+Penalized Multi-Band Learning algorithm can be effectively implemented for circadian rhythm analysis and daily activity pattern characterization using actigraphy (continuously measured objective physical activity data). Functions for interactive visualization of actigraph data are also included. 
 }
 \author{
 \packageAuthor{PML}
@@ -38,5 +38,6 @@ data(pa3)
 re <- bandSelect(df=pa3,Nlength=1440*3,Nlambda=100,alpha=1,Ntop=3,cross=FALSE,Ncross=NULL,plot=TRUE)
 
 ##use trelliscope to visualize data
-tre(lis3,plot.ind=TRUE,plot.tre=TRUE)
+\dontrun{tre(lis3,plot.ind=TRUE,plot.tre=TRUE,plot.tre.path=tempdir())}
+
 }

@@ -3,7 +3,7 @@
 #' A synthetic data list of three elements, each consisting of an activity matrix for one individual, and
 #' each column of an activity matrix is one-day activity observation. Therefore, an activity matrix is
 #' \code{nob} by \code{nday}. It is a named list, the name of which is the individual ID. It is for illustration 
-#' purposes of the functions in the package \code{accpa} only.
+#' purposes of the functions in the package \code{PML} only.
 #'
 #' @docType data
 #'

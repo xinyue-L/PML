@@ -4,7 +4,7 @@
 \alias{ind_plot}
 \title{trelliscope auxillary function}
 \usage{
-ind_plot(id, act_ind, act_all, band, ori = T, lw = F)
+ind_plot(id, act_ind, act_all, band, ori = TRUE, lw = FALSE)
 }
 \arguments{
 \item{id}{individual ID.}

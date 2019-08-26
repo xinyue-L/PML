@@ -12,7 +12,6 @@
 #' @param plot whether to plot: MSE against the number of nonzero \eqn{\theta}'s, and only the points at which the number of nonzero \eqn{\theta}'s changes (as \eqn{\lambda} changes) are be plotted. The default is TRUE.
 #' @param cross whether to perform cross-validation. The default is FALSE.
 #' @param Ncross the number of groups of data for cross-validation. If cross=TRUE, the data shall be divided into Ncross groups.
-#' @keywords learning, penalty, harmonics, periodicity
 #' 
 #' @return if no cross-validation is conducted, return a list; if cross-validation, return a list of lists, with the last list consisting of all FFT results and cross-validation groups (showing the subject IDs leave-out /NOT used each time).
 #' @return \item{topfreq}{vector of length \code{Ntop}: top frequencies selected.}
@@ -27,7 +26,8 @@
 #'
 #' @examples
 #' data(pa3)
-#' re <- bandSelect(df=pa3,Nlength=1440*3,Nlambda=100,alpha=1,Ntop=5,cross=FALSE,Ncross=NULL,plot=TRUE)
+#' re <- bandSelect(df=pa3,Nlength=1440*3,Nlambda=100,alpha=1,Ntop=5,
+#' cross=FALSE,Ncross=NULL,plot=TRUE)
 #'
 #' @seealso \code{\link{form}}
 #' 
@@ -51,8 +51,8 @@ bandSelect <- function(df,Nlength,Nlambda=100,alpha=1,Ntop=5,cross=FALSE,Ncross=
   }
   xscore <- do.call("rbind",lapply(re,function(x) x[,2]))
   xprop <- do.call("rbind",lapply(re,function(x) x[,4]))
-  print(paste("With a threshold of ",Nlength," observations per individual, "))
-  print(paste(nrow(xscore)," individuals are used for penalized multi-band learning.",sep=""))
+  message(paste("With a threshold of ",Nlength," observations per individual, "))
+  message(paste(nrow(xscore)," individuals are used for penalized multi-band learning.",sep=""))
 
   calc <- function(x_sq,alph,lambda) max((2*x_sq-alph*lambda)/(2*x_sq+(1-alph)*lambda),0)
   calc <- Vectorize(calc,vectorize.args ="x_sq")
@@ -152,7 +152,7 @@ bandSelect <- function(df,Nlength,Nlambda=100,alpha=1,Ntop=5,cross=FALSE,Ncross=
     nonzero <- nrow(reall)-nzeros
     deltazero <- c(0,nonzero[-length(nonzero)]-nonzero[-1])
 
-    if(plot==T) {
+    if(plot==TRUE) {
       plot(nonzero[deltazero!=0],mse[deltazero!=0],
            xlab=expression(paste("Number of Nonzero ", theta, "'s",sep="")),ylab="MSE")
     }
