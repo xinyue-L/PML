@@ -11,11 +11,5 @@ output: pdf_document
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
 
-## Revision according to CRAN feedback 08/23/2019
-
-1. Please replace \dontrun{} by if(interactive()){} in your Rd-files.
-
-Thank you for your suggestion. I have modified the examples in the Rd-files to include non-interactive examples only, and I have removed \dontrun{}.
-
-## First Submission of the PML package
-Thank you very much for your help!
+## Note
+This is an updated package due to changes in the updated tidyr package. The functions have been revised to fix the problems with the new tidyr package (version 1.0.0).
