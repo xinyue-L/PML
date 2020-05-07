@@ -6,6 +6,8 @@
 #' '%>%'
 #' @importFrom"dplyr"
 #' mutate
+#' @importFrom"tibble"
+#' add_column
 #' 
 #' @param lis the list of activity data, with each element corresponding to the observation by one individual and the name of each element coresponding to the individual id. Specifically, each element is a \code{nob} by \code{nday} matrix, where each column is an observation by day.
 #' @param maxday the maximal number of days per individual in the observation, used to check the data format. The default is 14.
@@ -58,7 +60,9 @@ form <- function(lis,maxday=14,id=NULL) {
   liscol <- do.call("cbind",lis)
   liscol2 <- list()
   for(i in 1:ncol(liscol)) liscol2[[i]] <- liscol[,i]
-  act <- dplyr::mutate(act,activity=liscol2);rm(liscol,liscol2)
+  #act <- dplyr::mutate(act, activity = liscol2) note: due to the changed version of tidyr
+  act <- tibble::add_column(act,activity = liscol2)
+  rm(liscol,liscol2)
   act$data <- NULL
   
   return(act)
