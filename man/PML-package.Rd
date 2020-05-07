@@ -37,7 +37,10 @@ pa3 <- form(lis3)
 data(pa3)
 re <- bandSelect(df=pa3,Nlength=1440*3,Nlambda=100,alpha=1,Ntop=3,cross=FALSE,Ncross=NULL,plot=TRUE)
 
-##use trelliscope to visualize data
-\dontrun{tre(lis3,plot.ind=TRUE,plot.tre=TRUE,plot.tre.path=tempdir())}
+##use trelliscope to visualize data:
+##return a dataset with trelliscope panels for individual mean activity plots
+data(var3)
+tre.ind <- tre(lis3,varlis=var3)
+tre.ind$activity_ind <- tre.ind$activity_all <- NULL
 
 }
